@@ -125,7 +125,7 @@ Inside the **v-for** expression, we used _kind in kinds_. Here, the _kinds_ refe
 
 Each **li** will display that array element because the inner HTML is written in the expression: {{ kind }} to print each one.
 
-\*\* Important: add a key attribute, it is essential for list items that are an object inside of an array. Example:
+## Important: add a key attribute, it is essential for list items that are an object inside of an array. Example:
 
 main.js
 
@@ -147,10 +147,10 @@ index.html
 
 ```javascript
 <div v-for='variant in variants' :key='variant.id'>{{ variant.color }}</div>
+```
 
-Using dot notation to print out each *variant* as it loops through the *variants* array, then used the **v-bind** shorthand to bind the variant's id to the key attribute. This gives each DOM element a unique key so Vue does not lose track if it as the app updates.
+Using dot notation to print out each _variant_ as it loops through the _variants_ array, then used the **v-bind** shorthand to bind the variant's id to the key attribute. This gives each DOM element a unique key so Vue does not lose track if it as the app updates.
 
-
-
+```
 
 ```
