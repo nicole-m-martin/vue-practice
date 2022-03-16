@@ -64,12 +64,6 @@ Shorthand:
 
 This is how to display different HTML elements based upon a condition. Example:
 
-index.html
-
-```javascript
-<p>
-```
-
 main.js
 
 ```javascript
