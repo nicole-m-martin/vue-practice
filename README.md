@@ -88,3 +88,7 @@ index.html
 <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
 <p v-else>Out of Stock</p>
 ```
+
+### Show and Hide
+
+The **v-show directive** is used for toggling an elements **visibility** instead of adding and removing the element from the DOM.
