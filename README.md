@@ -150,7 +150,3 @@ index.html
 ```
 
 Using dot notation to print out each _variant_ as it loops through the _variants_ array, then used the **v-bind** shorthand to bind the variant's id to the key attribute. This gives each DOM element a unique key so Vue does not lose track if it as the app updates.
-
-```
-
-```
