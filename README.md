@@ -2,11 +2,13 @@
 
 ### Creating a Vue App
 
-- in a main.js file
-  ```javascript
-  const app = Vue.createApp({});
-  ```
-  Use an argument to pass in an object and add a data property. It is a function that returns another object, were you store your data.
+in a main.js file
+
+```javascript
+const app = Vue.createApp({});
+```
+
+Use an argument to pass in an object and add a data property. It is a function that returns another object, were you store your data.
 
 ```javascript
 const app = Vue.createApp({
@@ -38,7 +40,7 @@ const app = Vue.createApp({
 </div>
 ```
 
-## Vue Instance
+# Vue Instances
 
 The heart of a Vue App, is when the options object is passed in, and allows adding optional properties to configure the application.
 
@@ -54,7 +56,7 @@ To create a bond between HTML element and a value from the Vue app's data, you u
 <img v-bind:src='image'>
 ```
 
-Shorthand:
+- Shorthand:
 
 ```javascript
 <img :src='image'>
@@ -112,7 +114,7 @@ const app = Vue.createApp({
 })
 ```
 
-Create an unordered list in index.html, then add the v-for in the list item:
+Create an unordered list in index.html, then add the **v-for** in the list item:
 
 ```javascript
 <ul>
@@ -150,3 +152,78 @@ index.html
 ```
 
 Using dot notation to print out each _variant_ as it loops through the _variants_ array, then used the **v-bind** shorthand to bind the variant's id to the key attribute. This gives each DOM element a unique key so Vue does not lose track if it as the app updates.
+
+# Event Handling
+
+index.html
+
+```javascript
+<div class='cart'>Cart({{ cart }})</div>
+...
+<button class='button'>Add To Cart</button>
+```
+
+main.js
+
+```javascript
+data() {
+  return {
+    cart: 0,
+    ...
+  }
+}
+```
+
+## Listening for Events
+
+To know when a button is clicked, use another **Vue Directive** called **v-on**
+
+```javascript
+<button class="button" v-on:click="logic to run">
+  Add to cart
+</button>
+```
+
+The **v-on** is listening for a _click_ event. Inside the quotes add logic or a method name to run when that event happens.
+
+index.html
+
+```javascript
+<button class='button' v-on:click='addToCart'>Add to cart</button>
+<button class='button' v-on:click='removeFromCart'>Remove from cart</button>
+```
+
+main.js
+
+```javascript
+const app = Vue.createApp({
+  data() {
+    return {
+      cart: 0
+      ...
+    }
+  },
+  methods: {
+    addToCart() {
+      this.cart += 1
+    },
+    removeFromCart() {
+      if (this.cart >= 1 {
+        this.cart -= 1
+      })
+    }
+  }
+})
+```
+
+In the methods option, and inside the addToCart and removeFromCart methods contain the logic for the on click event listener. this.cart refers to _this_ cart in _this_ Vue instance's data.
+
+using the **v-on** added to an element, when a click happens, the addToCart and removeFromCart methods run when the buttons are clicked.
+
+### Shorthand for **v-on**
+
+**v-on** can be shortened to the **@** symbol:
+
+```javascript
+<button class='button' @click='addToCart'>Add to cart</button>
+```
