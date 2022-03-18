@@ -227,3 +227,77 @@ using the **v-on** added to an element, when a click happens, the addToCart and 
 ```javascript
 <button class='button' @click='addToCart'>Add to cart</button>
 ```
+
+# Style Binding
+
+Style binding is done with the **v-bind** directive, or shorthand **:** on the style attribute, and then binding a style object to it.
+
+example:
+
+```javascript
+<div
+...
+:style="{ backgroundColor: variant.color }">
+</div>
+```
+
+using a variant _div_, add the _style_ attribute and bind a style object from the css file, to the _div_.
+
+## Camel vs Kebab Case
+
+Inside the expression is Javascript, so you can use a camelCase (backgroundColor) in the property name. If you use kebab (background-color) the _-_ would be interpreted as a minus sign in Javascript. If you use kebab case you need to add quotation marks around the property name.
+
+**Camel**
+
+```javascript
+<div :style="{ backgroundColor: variant.color }"></div>
+```
+
+**Kebab**
+
+```javascript
+<div :style="{ 'background-color': variant.color }"></div>
+```
+
+## Style Binding with Objects
+
+When adding a bunch of styles to an element bind an entire style object that is the data.
+
+index.html
+
+```javascript
+<div :style="styles"></div>
+```
+
+main.js
+
+```javascript
+data() {
+  return {
+    styles: {
+      color: '#8e908d',
+      fontSize: '12px'
+    }
+  }
+}
+```
+
+# Ternary Operators
+
+Ternary Operators can be used in-line to add different classes based upon a condition.
+
+index.html
+
+```javascript
+<div :class=" [isToggled ? activeToggle : notActiveToggle ]"></div>
+```
+
+main.js
+
+```javascript
+data() {
+  return {
+    isToggled: true
+  }
+}
+```
