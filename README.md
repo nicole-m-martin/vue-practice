@@ -301,3 +301,106 @@ data() {
   }
 }
 ```
+
+# Computed Properties
+
+Computed properties are properties added to the Vue app that compute values. Helps with performance because the calculated value. The value gets stored away and only updates when needed, when one of its dependencies change.
+
+main.js
+
+```javascript
+data() {
+  return {
+    product: 'Apples',
+    brand: 'Orchard Valley'
+  },
+  ...
+  computed: {
+    title() {
+      return this.brand + ' ' + this.product
+    }
+  }
+}
+```
+
+index.html
+
+```javascript
+<h1>{{ title }}</h1>
+```
+
+Output on browser:
+
+**Orchard Valley Apples**
+
+This is done by abstracting the computational logic out of the template and contained it in the options object in the main.js file.
+
+## Computing Image and Quantity
+
+Below the image property and quantity property is added to the variant objects.
+
+```javascript
+data() {
+  return {
+    ...
+    kinds: ['Golden Delicious', 'Granny Smith', 'Fuji'],
+    variants: [
+      { id: 1, color: 'yellow', image: '/assets/images/apples_yellow.jpg, quantity: 35},
+      { id: 2, color: 'green' image: '/assets/images/apples_green.jpg, quantity: 20},
+      { id: 3, color: 'red green' image: '/assets/images/apples_red_green.jpg, quantity: 0},
+    ]
+  }
+}
+```
+
+In the index.html a new mouseover event is created with a _updateVariant()_ method to trigger.
+
+index.html
+
+```javascript
+<div
+v-for='(variant, index)'
+:key='variant.id'
+@mouseover='updateVariant(index)'
+...
+</div>
+```
+
+Now the index of the currently hovered-on (@mouseover): _updateVariant(index)_ gives access to the index by adding it as a second parameter in the _v-for_ directive: _v-for='variant, index) in variants'_
+
+By passing the _index_ it tells the app which variant is currently hovered on, so it can use that info to trigger updating both the image and if that variant is in stock or not.
+
+New data property in the Main.js file:
+
+```javascript
+data() {
+  return {
+    ...
+    selectedVariant: 0,
+    ...
+  }
+}
+```
+
+The _updateVariant()_ method will set the _selectedVariant's_ value equal to the _index_ of the current _@mouseover_ variant.
+
+main.js
+
+```javascript
+updateVariant(index) {
+  this.selectedVariant = index
+}
+```
+
+These computed properties are added to the main.js
+
+```javascript
+computed: {
+  image() {
+    return this.variants[this.selectedVariant].image
+  },
+  inStock() {
+    return this.variants[this.selectedVariant].quantity
+  }
+}
+```
