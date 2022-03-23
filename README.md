@@ -404,3 +404,107 @@ computed: {
   }
 }
 ```
+
+# Components and Props
+
+Like in **React** components are the building blocks of an app. Same here with Vue. There are _parent_ and _child_ components. Child components are nested in the parents.
+
+## Creating a Component
+
+First create a components folder, and inside the folder is were the component files live. It is a way to extract parts of the page, instead of having it all in index.html
+
+Syntax for creating a component:
+
+components/Product display
+
+```javascript
+app.component('product-display', {});
+```
+
+The first argument is the component name (product-display) and the second argument is an _object_ to configure the component.
+
+## Template Property
+
+To give the component structure, add the _template_ property and paste the the HTML code into the component with a _Template Literal_.
+
+```javascript
+app.component('name-of-component', {
+  template:
+    /*html*/
+    `all the html you want to include inside this component`,
+});
+```
+
+None of the code is changed, it is just extracted and moved into the new component.
+
+### /_html_/ is a VS Code extension [es6-string-html](https://marketplace.visualstudio.com/items?itemName=Tobermory.es6-string-html), that creates syntax highlighting inside a _template literal_ Syntax: /_html_/ placed under the _template_ property, before the _template literal_ code.
+
+After the component has its template property, now add the data methods that are still in main.js. Paste them under the template.
+
+```javascript
+app.component('product-display, {
+  template:
+  /*html*/
+  `<div class="product-display>
+  ...
+  </div>`,
+  data() {
+    return {
+      product: 'Apples',
+      brand: 'Orchard Valley',
+      selectedVariant: 0,
+      kinds: ['Golden Delicious', 'Granny Smith', 'Fuji'],
+      variants: [
+      { id: 1, color: 'yellow', image: '/assets/images/apples_yellow.jpg, quantity: 35},
+      { id: 2, color: 'green' image: '/assets/images/apples_green.jpg, quantity: 20},
+      { id: 3, color: 'red green' image: '/assets/images/apples_red_green.jpg, quantity: 0},
+      ]
+    }
+  },
+  methods: {
+    ...
+  },
+  computed: {
+    ...
+  }
+})
+```
+
+### Clean up main.js
+
+the product-specific code in the _product-display_ component is now moved from main.js
+
+main.js
+
+```javascript
+const app = Vue.createApp({
+  data() {
+    return {
+      cart: 0,
+    };
+  },
+  methods: {},
+});
+```
+
+## Importing the component
+
+To use the _product-display_ import it into index.html file:
+
+index.html
+
+```javascript
+<!-- Import Components -->
+<script src="./components/ProductDisplay.js"></script>
+```
+
+To display the component on screen, add the component to the index.html file:
+
+```javascript
+<div id="app">
+  ...
+  <product-display></product-display>
+</div>
+```
+
+# Props
