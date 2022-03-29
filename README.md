@@ -508,3 +508,5 @@ To display the component on screen, add the component to the index.html file:
 ```
 
 # Props
+
+Components have their own isolated scope,
